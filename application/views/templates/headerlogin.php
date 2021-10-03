@@ -30,7 +30,7 @@ li a {
     <body>
 <nav style ="background:#ffb703"class=" navbar navbar-expand-lg  lighten-1">
      <div class="navbar-header">
-          <a style="color:#ffffff" class="navbar-brand" >Seznam škol v ČR</a>
+          <a style="color:#ffffff" class="navbar-brand">Seznam škol v ČR</a>
     </div>
 
 
@@ -48,13 +48,8 @@ li a {
         </li>            
 
     <?php endforeach; ?>
- 
-    </ul>
-      
- <ul class="navbar-nav" class="mb-5 navbar navbar-expand-lg  lighten-1">           
- <li class="nav-item"> <a class="nav-link"<a href='<?php echo base_url() . "auth/login"; ?>'>Přihlásit se</a>  </li>
- </ul>
-  </div>
+</ul>
+      </div>
 </nav>
     </body>
 </html>
