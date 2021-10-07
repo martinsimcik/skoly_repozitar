@@ -43,8 +43,8 @@
         </style>
         <script>
 function myFunction() {
-  // Declare variables
-  var input, filter, table, tr, td, i, txtValue;
+  // Declare variables 
+  var input, filter, table, tr, td, i;
   input = document.getElementById("myInput");
   filter = input.value.toUpperCase();
   table = document.getElementById("myTable");
@@ -52,15 +52,21 @@ function myFunction() {
 
   // Loop through all table rows, and hide those who don't match the search query
   for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0];
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+    //Column 1
+    td_1 = tr[i].getElementsByTagName("td")[0];
+    //Column 2
+    td_2 = tr[i].getElementsByTagName("td")[1];
+    //Column 3
+    td_3 = tr[i].getElementsByTagName("td")[2];
+    //Column 3
+    td_4 = tr[i].getElementsByTagName("td")[3];
+    if (td_1 || td_2 || td_3 || td_3) {
+      if (td_1.innerHTML.toUpperCase().indexOf(filter) > -1 || td_2.innerHTML.toUpperCase().indexOf(filter)> -1 || td_3.innerHTML.toUpperCase().indexOf(filter)> -1 || td_4.innerHTML.toUpperCase().indexOf(filter)> -1) {
         tr[i].style.display = "";
       } else {
         tr[i].style.display = "none";
       }
-    }
+    } 
   }
 }
 </script>
