@@ -7,7 +7,7 @@
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <style>
+        <style>
             #myInput {
   background-image: url('/css/searchicon.png'); /* Add a search icon to input */
   background-position: 10px 12px; /* Position the search icon */
@@ -43,8 +43,8 @@
         </style>
         <script>
 function myFunction() {
-  // Declare variables
-  var input, filter, table, tr, td, i, txtValue;
+  // Declare variables 
+  var input, filter, table, tr, td, i;
   input = document.getElementById("myInput");
   filter = input.value.toUpperCase();
   table = document.getElementById("myTable");
@@ -52,15 +52,21 @@ function myFunction() {
 
   // Loop through all table rows, and hide those who don't match the search query
   for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0];
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+    //Column 1
+    td_1 = tr[i].getElementsByTagName("td")[0];
+    //Column 2
+    td_2 = tr[i].getElementsByTagName("td")[1];
+    //Column 3
+    td_3 = tr[i].getElementsByTagName("td")[2];
+    //Column 3
+    td_4 = tr[i].getElementsByTagName("td")[3];
+    if (td_1 || td_2 || td_3 || td_3) {
+      if (td_1.innerHTML.toUpperCase().indexOf(filter) > -1 || td_2.innerHTML.toUpperCase().indexOf(filter)> -1 || td_3.innerHTML.toUpperCase().indexOf(filter)> -1 || td_4.innerHTML.toUpperCase().indexOf(filter)> -1) {
         tr[i].style.display = "";
       } else {
         tr[i].style.display = "none";
       }
-    }
+    } 
   }
 }
 </script>
