@@ -70,30 +70,65 @@ function myFunction() {
   }
 }
 </script>
+<style>
+            .vertical-center {
+  
+  position: absolute;
+  bottom: 76%;
+  right: 10%;
+
+}
+.vertical-centero {
+  
+  position: absolute;
+  bottom: 66%;
+  right: 10%;
+
+}
+</style>
     </head>
     <body>
         
+        <div class="vertical-center">
+        <a href="<?php echo base_url() . "auth/skolaPridani"; ?>" class="btn btn-yellow" class="vertical-center">Přidání školy</a>
         
+  </div>
+        
+        
+  
   <div class="container" class="text-center">
+      
 <h1>Seznam škol v ČR</h1>
+
+  
+
 <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Hledejte..">  
         
-        
         <table id="myTable">
+            <?php
+
+include "dbConn.php"; // Using database connection file here
+
+$records = mysqli_query($db,"select * from majitel"); // fetch data from database
+
+?>
+            
             <tr>
                 <th>Název školy</th>
                 <th>Město</th>
                 <th>Počet přijatých</th>
                 <th>Obor</th>
+               
             </tr>
             <?php
             $conn = mysqli_connect("localhost","root","","skoly");
-            $sql ="SELECT skola.nazev as 'Škola', mesto.nazev as 'Město', pocet_prijatych.pocet as 'Počet přijatých', obor.nazev as 'Obor' from skola INNER JOIN mesto ON mesto.id=skola.mesto INNER join pocet_prijatych ON pocet_prijatych.skola = skola.id INNER JOIN obor ON obor.id = pocet_prijatych.obor";
+            $sql ="SELECT skola.id, skola.nazev as 'Škola', mesto.nazev as 'Město', pocet_prijatych.pocet as 'Počet přijatých', obor.nazev as 'Obor' from skola INNER JOIN mesto ON mesto.id=skola.mesto left join pocet_prijatych ON pocet_prijatych.skola = skola.id left JOIN obor ON obor.id = pocet_prijatych.obor";
             $result = $conn-> query($sql);
             
             if($result->num_rows > 0) {
-                while ($row = $result-> fetch_assoc()) {
-                    echo "<tr><td>" . $row["Škola"] . "</td><td>" . $row["Město"] . "</td><td>" . $row["Počet přijatých"] . "</td><td>" . $row["Obor"] ;
+                while ($row = $result-> fetch_assoc()) {                                                                        
+                    echo "<tr><td>" . $row["Škola"] . "</td><td>" . $row["Město"] . "</td><td>" . $row["Počet přijatých"] . "</td><td>" . $row["Obor"] . "<a href='uprava/".$row["id"] ."'> Úprava školy </a>" ;
+                    
                 }
             }
             else {

@@ -88,7 +88,7 @@ function myFunction() {
             </tr>
             <?php
             $conn = mysqli_connect("localhost","root","","skoly");
-            $sql ="SELECT skola.nazev as 'Škola', mesto.nazev as 'Město', pocet_prijatych.pocet as 'Počet přijatých', obor.nazev as 'Obor' from skola INNER JOIN mesto ON mesto.id=skola.mesto INNER join pocet_prijatych ON pocet_prijatych.skola = skola.id INNER JOIN obor ON obor.id = pocet_prijatych.obor";
+            $sql ="SELECT skola.nazev as 'Škola', mesto.nazev as 'Město', pocet_prijatych.pocet as 'Počet přijatých', obor.nazev as 'Obor' from skola INNER JOIN mesto ON mesto.id=skola.mesto left join pocet_prijatych ON pocet_prijatych.skola = skola.id left JOIN obor ON obor.id = pocet_prijatych.obor";
             $result = $conn-> query($sql);
             
             if($result->num_rows > 0) {

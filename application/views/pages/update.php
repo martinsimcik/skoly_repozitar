@@ -1,22 +1,13 @@
+
 <html>
-    <head>
-        <title>Zapomenuté heslo</title>
-        <meta charset="UTF-8">
+<head>
+  <title>Úprava škol</title>
+  <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-        
-<!-- Bootstrap core CSS -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-<!-- Material Design Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.9/css/mdb.min.css" rel="stylesheet"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-<!-- Bootstrap core CSS -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-<!-- Material Design Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.9/css/mdb.min.css" rel="stylesheet">
 <style>
 html {
   height: 100%;
@@ -78,7 +69,7 @@ body {
 .box .user-box input:valid ~ label {
   top: -20px;
   left: 0;
-  color: #03e9f4;
+  color: #ffb703;
   font-size: 12px;
 }
 
@@ -134,7 +125,7 @@ body {
   right: 0;
   width: 2px;
   height: 100%;
-  background: linear-gradient(180deg, transparent, #03e9f4);
+  background: linear-gradient(180deg, transparent, #ffb703);
   animation: btn-anim2 1s linear infinite;
   animation-delay: .25s
 }
@@ -153,7 +144,7 @@ body {
   right: -100%;
   width: 100%;
   height: 2px;
-  background: linear-gradient(270deg, transparent, #03e9f4);
+  background: linear-gradient(270deg, transparent, #ffb703);
   animation: btn-anim3 1s linear infinite;
   animation-delay: .5s
 }
@@ -172,7 +163,7 @@ body {
   left: 0;
   width: 2px;
   height: 100%;
-  background: linear-gradient(360deg, transparent, #03e9f4);
+  background: linear-gradient(360deg, transparent, #ffb703);
   animation: btn-anim4 1s linear infinite;
   animation-delay: .75s
 }
@@ -192,34 +183,33 @@ body {
   right: 22%;
 
 }
-.vertical-center-u {
-  
-  position: absolute;
-  
-  right: 50%;
-
-}
 </style>
-    </head>
-</body>
+            <?php $actual_link = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF']; 
 
+?>
+        
+<?php 
+$outputString = preg_replace('/[^0-9]/', '', $actual_link);
 
-<div class="box">
-        <h2>Zapomenuté heslo</h2>
-        <form action="" method="POST">
-<div id="infoMessage" style="color:#ffffff">
-        <div class="user-box">
-<?php echo form_open("auth/forgot_password");?>
+?>
+</head>
 
-            <div class="user-box" style="color:#ffffff">
-    Email:
-    <?php echo form_input (($type=='email') ? sprintf(lang('forgot_password_email_label'), $identity_label) : sprintf(lang('forgot_password_identity_label'), $identity_label));?>
-  </div>
-      
-
-      <input type="submit" class="btn btn-yellow" class="vertical-center" name="submitinserdetails" value="Odeslat">
-
-<?php echo form_close();?>
-        </div>
+<body>
+<center>
+            <div class="box">
+        <h1 style="color:#ffffff"> Úprava dat škol</h1>
+        <form action="<?php echo base_url('auth/update/'.$outputString) ?>" method="POST">
+            
+            
+            <div class="user-box">
+            <input type="text" name="skola" required=""/><br/>
+            <label for="skola">Škola:</label>
+            </div>
+            
+            <input type="submit" class="btn btn-yellow" class="vertical-center" name="update" value="Upravit data">
         </form>
-</div>
+            </div>
+    </center>
+</body>
+</html>
+

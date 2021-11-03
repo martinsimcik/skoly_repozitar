@@ -207,6 +207,9 @@ class Auth extends CI_Controller
 	 */
 	public function forgot_password()
 	{
+            $this->load->model('skoly_model');
+                $data['polozky'] = $this->skoly_model->get_menu();
+		$this->load->view('templates/headerlogin', $data); 
 		$this->data['title'] = $this->lang->line('forgot_password_heading');
 		
 		// setting validation rules by checking whether identity is username or email
@@ -286,7 +289,9 @@ class Auth extends CI_Controller
 	 * @param string|null $code The reset code
 	 */
 	public function reset_password($code = NULL)
+                
 	{
+            
 		if (!$code)
 		{
 			show_404();
@@ -913,5 +918,33 @@ class Auth extends CI_Controller
 		$this->load->view('templates/footer');
         }
         }
+        public function skolaPridani()
+        {
+            if($this->ion_auth->logged_in()){
+                $this->load->model('skoly_model');
+                $data['polozky'] = $this->skoly_model->get_menu();
+                $this->load->view('templates/headerlogout', $data);                
+		$this->load->view('pages/skolaPridani', $data);  
+		
+        }
+        }
+         public function update($id)
+        {
+            if($this->ion_auth->logged_in()){
+                $this->load->model('skoly_model');
+                $data['polozky'] = $this->skoly_model->get_menu();
+                $e = $this->input->post('skola');
+                $this->load->view('templates/headerlogout', $data);  
+                $this->load->view('pages/update', $data); 
+                $this->db->query("UPDATE skola SET nazev='$e' WHERE id='$id'");
+            }           
+        }
+public function uprava($id)
+{
+                    $this->load->model('skoly_model');
+                $data['polozky'] = $this->skoly_model->get_menu();
+                    $this->load->view('templates/headerlogout', $data);                
 
+$this->load->view('pages/update', $id);     
+}
 }

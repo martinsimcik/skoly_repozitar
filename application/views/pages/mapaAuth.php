@@ -1,3 +1,5 @@
+
+
 <html>
     <head>
         <title>Mapa</title>
@@ -35,7 +37,23 @@
 var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 });
-osm.addTo(map)
+osm.addTo(map);
 
-L.marker([49.065596, 17.480848]).addTo(map);
+
+
 </script>
+
+<?php 
+
+    
+            $conn = mysqli_connect("localhost","root","","skoly");
+            $sql ="SELECT * from skola";
+            $result = $conn-> query($sql);
+
+            //echo "<script>alert('".$row['geo-lat']."');</script>";
+    
+foreach ($result as $row) { 
+    //echo "<script>alert('".$row['geo-lat'], $row['geo-long'], $row['nazev'] ."');</script>"; ?>
+    <script> var marker = L.marker([<?php echo $row['geo-lat']; ?>, <?php echo $row['geo-long']; ?>]).addTo(map); </script>
+    ?>
+<?php } ?>
