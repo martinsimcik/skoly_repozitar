@@ -1,4 +1,4 @@
-Stránka: skolyci.4fan.cz 
+Stránka: http://skolyci.4fan.cz/
 
 ###################
 What is CodeIgniter
